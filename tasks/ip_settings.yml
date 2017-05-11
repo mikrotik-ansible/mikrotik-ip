@@ -1,0 +1,52 @@
+---
+- name: Setting accept-redirects={{ mikrotik_ip.settings.accept_redirects }}
+  raw: /ip settings set accept-redirects={{ mikrotik_ip.settings.accept_redirects }}
+  when: mikrotik_ip.settings.accept_redirects is defined
+
+- name: Setting accept-source-route={{ mikrotik_ip.settings.accept_source_route }}
+  raw: /ip settings set accept-source-route={{ mikrotik_ip.settings.accept_source_route }}
+  when: mikrotik_ip.settings.accept_source_route is defined
+
+- name: Setting allow-fast-path={{ mikrotik_ip.settings.allow_fast_path }}
+  raw: /ip settings set allow-fast-path={{ mikrotik_ip.settings.allow_fast_path }}
+  when: mikrotik_ip.settings.allow_fast_path is defined
+
+- name: Setting to arp-timeout={{ mikrotik_ip.settings.arp_timeout }}
+  raw: /ip settings set arp-timeout={{ mikrotik_ip.settings.arp_timeout }}
+  when: mikrotik_ip.settings.arp_timeout is defined
+
+- name: Setting icmp-rate-limit={{ mikrotik_ip.settings.icmp_rate_limit }}
+  raw: /ip settings set icmp-rate-limit={{ mikrotik_ip.settings.icmp_rate_limit }}
+  when: mikrotik_ip.settings.icmp_rate_limit is defined
+
+- name: Setting icmp-rate-mask={{ mikrotik_ip.settings.icmp_rate_mask }}
+  raw: /ip settings set icmp-rate-mask={{ mikrotik_ip.settings.icmp_rate_mask }}
+  when: mikrotik_ip.settings.icmp_rate_mask is defined
+
+- name: Setting ip-forward={{ mikrotik_ip.settings.ip_forward }}
+  raw: /ip settings set ip-forward={{ mikrotik_ip.settings.ip_forward }}
+  when: mikrotik_ip.settings.ip_forward is defined
+
+- name: Setting max-neighbor-entries={{ mikrotik_ip.settings.max_neighbor_entries }}
+  raw: /ip settings set max-neighbor-entries={{ mikrotik_ip.settings.max_neighbor_entries }}
+  when: mikrotik_ip.settings.max_neighbor_entries is defined
+
+- name: Setting route-cache={{ mikrotik_ip.settings.route_cache }}
+  raw: /ip settings set route-cache={{ mikrotik_ip.settings.route_cache }}
+  when: mikrotik_ip.settings.route_cache is defined
+
+- name: Setting rp-filter={{ mikrotik_ip.settings.rp_filter }}
+  raw: /ip settings set rp-filter={{ mikrotik_ip.settings.rp_filter }}
+  when: mikrotik_ip.settings.rp_filter is defined
+
+- name: Setting secure-redirects={{ mikrotik_ip.settings.secure_redirects }}
+  raw: /ip settings set secure-redirects={{ mikrotik_ip.settings.secure_redirects }}
+  when: mikrotik_ip.settings.secure_redirects is defined
+
+- name: Setting send-redirects={{ mikrotik_ip.settings.send_redirects }}
+  raw: /ip settings set send-redirects={{ mikrotik_ip.settings.send_redirects }}
+  when: mikrotik_ip.settings.send_redirects is defined
+
+- name: Setting tcp-syncookies={{ mikrotik_ip.settings.tcp_syncookies }}
+  raw: /ip settings set tcp-syncookies={{ mikrotik_ip.settings.tcp_syncookies }}
+  when: mikrotik_ip.settings.tcp_syncookies is defined
