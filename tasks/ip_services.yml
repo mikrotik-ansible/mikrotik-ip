@@ -1,0 +1,12 @@
+---
+- name: Setting services
+  raw: /ip service set {{ item.name }} port={{ item.port }} disabled={{ item.disabled }} address="{{ item.address }}"
+  with_items:
+     - "{{ mikrotik_ip.services }}"
+  register: mikrotik_out
+
+
+- name: Print messages if changes was unsuccessful
+  debug: msg="{{item.item}}"
+  with_items: "{{mikrotik_out.results}}"
+  when: item.stdout

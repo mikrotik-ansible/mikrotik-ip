@@ -2,3 +2,6 @@
 # tasks file for mikrotik-ip
 - include: ip_settings.yml
   tags: [ 'role::mikrotik_ip:settings' ]
+
+- include: ip_services.yml
+  tags: [ 'role::mikrotik_ip:services' ]
