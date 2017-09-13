@@ -1,0 +1,19 @@
+{% if  mikrotik_ip.remove_old_addresses == true %}
+/ip address remove [/ip address find were dynamic=no]
+{% endif %}
+
+/ip address remove [/ip address find where !(\
+{% for list in mikrotik_ip.addresses %}
+{% if iter is defined %} or {% endif %}(interface={{list.interface}} and disabled={{list.disabled}} and address="{{list.address}}" {% if list.comment is defined %}and comment="Ansible managed: [{{list.comment}}]"{% endif %}) \
+{% set iter = true %}
+{% endfor %}
+) and dynamic=no]
+
+# Add all values
+{% for list in mikrotik_ip.addresses %}
+:if ([/ip address find interface={{list.interface}} disabled={{list.disabled}} address="{{list.address}}"{% if list.comment is defined %} comment="Ansible managed: [{{list.comment}}]"{% endif %}] = "") do={
+:log info "Add address: {{list.address}} to interface: {{list.interface}}..."
+/ip address add interface={{list.interface}} {% if list.disabled is defined %}disabled={{list.disabled}} {%endif%}address={{list.address}}\
+{% if list.comment is defined %}comment="Ansible managed: [{{list.comment}}]"{% endif %}
+}
+{% endfor %}

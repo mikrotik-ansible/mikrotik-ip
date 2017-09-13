@@ -1,6 +1,7 @@
 ---
-- include: addresses.yml
-  tags: [ 'role::mikrotik_ip:addresses']
+# Address & route should run by script
+- include: address.yml
+  tags: [ 'role::mikrotik_ip:address']
 
 - include: routes.yml
   tags: [ 'role::mikrotik_ip:routes']

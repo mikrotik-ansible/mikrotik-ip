@@ -1,0 +1,19 @@
+---
+  - name: Generate addresses-{{inventory_hostname}}.rsc to check and add user
+    template: src=addresses.rsc.j2 dest={{role_path}}/files/tmp/addresses-{{inventory_hostname}}.rsc
+    delegate_to: localhost
+
+  - name: Send addresses-{{inventory_hostname}}.rsc script
+    command: scp -P {{ansible_port}} {{role_path}}/files/tmp/addresses-{{inventory_hostname}}.rsc {{ansible_user}}@{{ansible_host}}:/addresses-{{inventory_hostname}}.rsc
+    delegate_to: localhost
+
+  # - name: Delete temporary addresses-{{inventory_hostname}}.rsc file
+  #   file: path={{role_path}}/files/tmp/addresses-{{inventory_hostname}}.rsc state=absent
+  #   delegate_to: localhost
+
+  - name: Run addresses-{{inventory_hostname}}.rsc on router
+    raw:  "/import addresses-{{inventory_hostname}}.rsc"
+    tags: mikrotik_ip_addresses
+
+  - name: Remove addresses-{{inventory_hostname}}.rsc from router
+    raw:  "/file remove addresses-{{inventory_hostname}}.rsc"

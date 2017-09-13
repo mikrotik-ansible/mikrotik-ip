@@ -13,8 +13,8 @@ mikrotik_ip:
       interface: "{{ wan_interface }}"
       comment: "Main"
       disabled: "no"
-    - address: 10.11.11.1/24
-      inteface: ether2
+    - address: 10.11.11.2/24
+      interface: ether12
       disabled: "no"
   # That remove all current routing table, you can lost your connection
   remove_old_routes: true
