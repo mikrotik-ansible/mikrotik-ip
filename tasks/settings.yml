@@ -1,52 +1,91 @@
 ---
-- name: Setting accept-redirects={{ mikrotik_ip.settings.accept_redirects }}
-  raw: /ip settings set accept-redirects={{ mikrotik_ip.settings.accept_redirects }}
+- name: "Setting accept-redirects={{ mikrotik_ip.settings.accept_redirects }}"
+  raw: :if ([/ip settings get accept-redirects] != {{ mikrotik_ip.settings.accept_redirects }}) do={:put "accept-redirects"; /ip settings set accept-redirects={{ mikrotik_ip.settings.accept_redirects }} }
   when: mikrotik_ip.settings.accept_redirects is defined
+  register: accept_redirects
+  changed_when: accept_redirects.stdout_lines[0] is defined and accept_redirects.stdout_lines[0] == "accept-redirects"
+  failed_when: accept_redirects.stdout_lines[0] is defined and accept_redirects.stdout_lines[0] != "accept-redirects"
 
 - name: Setting accept-source-route={{ mikrotik_ip.settings.accept_source_route }}
-  raw: /ip settings set accept-source-route={{ mikrotik_ip.settings.accept_source_route }}
+  raw: :if ([/ip settings get accept-source-route] != {{ mikrotik_ip.settings.accept_source_route }}) do={:put "accept-source-route"; /ip settings set accept-source-route={{ mikrotik_ip.settings.accept_source_route }} }
   when: mikrotik_ip.settings.accept_source_route is defined
+  register: accept_source_route
+  changed_when: accept_source_route.stdout_lines[0] is defined and accept_source_route.stdout_lines[0] == "accept-source-route"
+  failed_when: accept_source_route.stdout_lines[0] is defined and accept_source_route.stdout_lines[0] != "accept-source-route"
 
 - name: Setting allow-fast-path={{ mikrotik_ip.settings.allow_fast_path }}
-  raw: /ip settings set allow-fast-path={{ mikrotik_ip.settings.allow_fast_path }}
+  raw: :if ([/ip settings get allow-fast-path] != {{ mikrotik_ip.settings.allow_fast_path }}) do={:put "allow-fast-path"; /ip settings set allow-fast-path={{ mikrotik_ip.settings.allow_fast_path }} }
   when: mikrotik_ip.settings.allow_fast_path is defined
+  register: allow_fast_path
+  changed_when: allow_fast_path.stdout_lines[0] is defined and allow_fast_path.stdout_lines[0] == "accept-redirects"
+  failed_when: allow_fast_path.stdout_lines[0] is defined and allow_fast_path.stdout_lines[0] != "accept-redirects"
 
 - name: Setting to arp-timeout={{ mikrotik_ip.settings.arp_timeout }}
-  raw: /ip settings set arp-timeout={{ mikrotik_ip.settings.arp_timeout }}
+  raw: :if ([/ip settings get arp-timeout] != {{ mikrotik_ip.settings.arp_timeout }}) do={:put "arp-timeout"; /ip settings set arp-timeout={{ mikrotik_ip.settings.arp_timeout }} }
   when: mikrotik_ip.settings.arp_timeout is defined
+  register: arp_timeout
+  changed_when: arp_timeout.stdout_lines[0] is defined and arp_timeout.stdout_lines[0] == "arp-timeout"
+  failed_when: arp_timeout.stdout_lines[0] is defined and arp_timeout.stdout_lines[0] != "arp-timeout"
 
 - name: Setting icmp-rate-limit={{ mikrotik_ip.settings.icmp_rate_limit }}
-  raw: /ip settings set icmp-rate-limit={{ mikrotik_ip.settings.icmp_rate_limit }}
+  raw: :if ([/ip settings get icmp-rate-limit] != {{ mikrotik_ip.settings.icmp_rate_limit }}) do={:put "icmp-rate-limit"; /ip settings set icmp-rate-limit={{ mikrotik_ip.settings.icmp_rate_limit }} }
   when: mikrotik_ip.settings.icmp_rate_limit is defined
+  register: icmp_rate_limit
+  changed_when: icmp_rate_limit.stdout_lines[0] is defined and icmp_rate_limit.stdout_lines[0] == "icmp-rate-limit"
+  failed_when: icmp_rate_limit.stdout_lines[0] is defined and icmp_rate_limit.stdout_lines[0] != "icmp-rate-limit"
 
 - name: Setting icmp-rate-mask={{ mikrotik_ip.settings.icmp_rate_mask }}
-  raw: /ip settings set icmp-rate-mask={{ mikrotik_ip.settings.icmp_rate_mask }}
+  raw: :if ([/ip settings get icmp-rate-mask] != {{ mikrotik_ip.settings.icmp_rate_mask }}) do={:put "icmp-rate-mask"; /ip settings set icmp-rate-mask={{ mikrotik_ip.settings.icmp_rate_mask }} }
   when: mikrotik_ip.settings.icmp_rate_mask is defined
+  register: icmp_rate_mask
+  changed_when: icmp_rate_mask.stdout_lines[0] is defined and icmp_rate_mask.stdout_lines[0] == "icmp-rate-mask"
+  failed_when: icmp_rate_mask.stdout_lines[0] is defined and icmp_rate_mask.stdout_lines[0] != "icmp-rate-mask"
 
 - name: Setting ip-forward={{ mikrotik_ip.settings.ip_forward }}
-  raw: /ip settings set ip-forward={{ mikrotik_ip.settings.ip_forward }}
+  raw: :if ([/ip settings get ip-forward] != {{ mikrotik_ip.settings.ip_forward }}) do={:put "ip-forward"; /ip settings set ip-forward={{ mikrotik_ip.settings.ip_forward }} }
   when: mikrotik_ip.settings.ip_forward is defined
+  register: ip_forward
+  changed_when: ip_forward.stdout_lines[0] is defined and ip_forward.stdout_lines[0] == "ip-forward"
+  failed_when: ip_forward.stdout_lines[0] is defined  and ip_forward.stdout_lines[0] != "ip-forward"
 
 - name: Setting max-neighbor-entries={{ mikrotik_ip.settings.max_neighbor_entries }}
-  raw: /ip settings set max-neighbor-entries={{ mikrotik_ip.settings.max_neighbor_entries }}
+  raw: :if ([/ip settings get max-neighbor-entries] != {{ mikrotik_ip.settings.max_neighbor_entries }}) do={:put "max-neighbor-entries"; /ip settings set max-neighbor-entries={{ mikrotik_ip.settings.max_neighbor_entries }} }
   when: mikrotik_ip.settings.max_neighbor_entries is defined
+  register: max_neighbor_entries
+  changed_when: max_neighbor_entries.stdout_lines[0] is defined and max_neighbor_entries.stdout_lines[0] == "max-neighbor-entries"
+  failed_when: max_neighbor_entries.stdout_lines[0] is defined and max_neighbor_entries.stdout_lines[0] != "max-neighbor-entries"
 
 - name: Setting route-cache={{ mikrotik_ip.settings.route_cache }}
-  raw: /ip settings set route-cache={{ mikrotik_ip.settings.route_cache }}
+  raw: :if ([/ip settings get route-cache] != {{ mikrotik_ip.settings.route_cache }}) do={:put "route-cache"; /ip settings set route-cache={{ mikrotik_ip.settings.route_cache }} }
   when: mikrotik_ip.settings.route_cache is defined
+  register: route_cache
+  changed_when: route_cache.stdout_lines[0] is defined and route_cache.stdout_lines[0] == "route-cache"
+  failed_when: route_cache.stdout_lines[0] is defined and route_cache.stdout_lines[0] != "route-cache"
 
 - name: Setting rp-filter={{ mikrotik_ip.settings.rp_filter }}
-  raw: /ip settings set rp-filter={{ mikrotik_ip.settings.rp_filter }}
+  raw: :if ([/ip settings get rp-filter] != "{{ mikrotik_ip.settings.rp_filter }}") do={:put "rp-filter"; /ip settings set rp-filter={{ mikrotik_ip.settings.rp_filter }} }
   when: mikrotik_ip.settings.rp_filter is defined
+  register: rp_filter
+  changed_when: rp_filter.stdout_lines[0] is defined and rp_filter.stdout_lines[0] == "rp-filter"
+  failed_when: rp_filter.stdout_lines[0] is defined and rp_filter.stdout_lines[0] != "rp-filter"
 
 - name: Setting secure-redirects={{ mikrotik_ip.settings.secure_redirects }}
-  raw: /ip settings set secure-redirects={{ mikrotik_ip.settings.secure_redirects }}
+  raw: :if ([/ip settings get secure-redirects] != {{ mikrotik_ip.settings.secure_redirects }}) do={:put "secure-redirects"; /ip settings set secure-redirects={{ mikrotik_ip.settings.secure_redirects }} }
   when: mikrotik_ip.settings.secure_redirects is defined
+  register: secure_redirects
+  changed_when: secure_redirects.stdout_lines[0] is defined and secure_redirects.stdout_lines[0] == "secure-redirects"
+  failed_when: secure_redirects.stdout_lines[0] is defined  and secure_redirects.stdout_lines[0] != "secure-redirects"
 
 - name: Setting send-redirects={{ mikrotik_ip.settings.send_redirects }}
-  raw: /ip settings set send-redirects={{ mikrotik_ip.settings.send_redirects }}
+  raw: :if ([/ip settings get send-redirects] != {{ mikrotik_ip.settings.send_redirects }}) do={:put "send-redirects"; /ip settings set send-redirects={{ mikrotik_ip.settings.send_redirects }} }
   when: mikrotik_ip.settings.send_redirects is defined
+  register: send_redirects
+  changed_when: send_redirects.stdout_lines[0] is defined and send_redirects.stdout_lines[0] == "send-redirects"
+  failed_when: send_redirects.stdout_lines[0] is defined  and send_redirects.stdout_lines[0] != "send-redirects"
 
 - name: Setting tcp-syncookies={{ mikrotik_ip.settings.tcp_syncookies }}
-  raw: /ip settings set tcp-syncookies={{ mikrotik_ip.settings.tcp_syncookies }}
+  raw: :if ([/ip settings get tcp-syncookies] != {{ mikrotik_ip.settings.tcp_syncookies }}) do={:put "tcp-syncookies"; /ip settings set tcp-syncookies={{ mikrotik_ip.settings.tcp_syncookies }} }
   when: mikrotik_ip.settings.tcp_syncookies is defined
+  register: tcp_syncookies
+  changed_when: tcp_syncookies.stdout_lines[0] is defined and tcp_syncookies.stdout_lines[0] == "tcp-syncookies"
+  failed_when: tcp_syncookies.stdout_lines[0] is defined  and tcp_syncookies.stdout_lines[0] != "tcp-syncookies"
